@@ -1,6 +1,12 @@
 AllCops:
   TargetRubyVersion: 3.0.0
 
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
 Bundler/DuplicatedGem:
   Enabled: true
 
@@ -124,3 +130,6 @@ Style/MethodCallWithArgsParentheses:
 Style/MutableConstant:
   Enabled: true
   EnforcedStyle: literals
+
+Style/TrailingCommaInArguments:
+  Enabled: comma

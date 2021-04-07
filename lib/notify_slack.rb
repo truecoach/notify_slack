@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "notify_slack/version"
+require_relative 'notify_slack/notify'
 
 module NotifySlack
-  class Error < StandardError; end
-  # Your code goes here...
+  class << self
+    def notify(url, message)
+      Notify.call(url, message)
+    end
+  end
 end
