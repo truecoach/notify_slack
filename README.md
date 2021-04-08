@@ -1,28 +1,31 @@
 # NotifySlack
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/notify_slack`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a simple gem for posting to Slack incoming webhooks.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'notify_slack'
+gem 'notify_slack', git: https://github.com/truecoach/notify_slack, tag: 0.1
 ```
 
 And then execute:
 
     $ bundle install
 
-Or install it yourself as:
-
-    $ gem install notify_slack
-
 ## Usage
 
-TODO: Write usage instructions here
+A single method is exposed to post a message to a slack webhook: `NotifySlack.notify`
+
+ex.
+
+```ruby
+NotifySlack.notify(
+  "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX",
+  "In a hole in the ground there lived a hobbit"
+)
+```
 
 ## Development
 
@@ -32,7 +35,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/notify_slack.
+Bug reports and pull requests are welcome on GitHub at https://github.com/truecoach/notify_slack.
 
 ## License
 
