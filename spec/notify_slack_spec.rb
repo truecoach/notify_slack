@@ -20,6 +20,17 @@ RSpec.describe NotifySlack, '.notify', :slack do
     expect(response.body).to eq('OK')
   end
 
+  context 'when given an invalid incoming webhook url' do
+    let(:webhook_url) { "https://some.other.domain/services/#{webhook_id}" }
+
+    it 'raises an informative error' do
+      expect { response }.to raise_error(
+        described_class::Validation::ValidationError,
+        /url must be a valid slack incoming webhook/i
+      )
+    end
+  end
+
   context 'when the hook cannot be found' do
     let(:webhook_url) { "https://hooks.slack.com/services/wrong" }
 
