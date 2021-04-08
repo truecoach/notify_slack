@@ -7,6 +7,14 @@ RSpec.describe NotifySlack, '.notify', :slack do
 
   subject(:response) { NotifySlack.notify(webhook_url, message) }
 
+  it 'correctly structures the request' do
+    response
+
+    expect(webhook_requests.first.method).to eq(:post)
+    expect(webhook_requests.first.body).to include("text" => "test")
+    expect(webhook_requests.first.headers).to include("Content-Type" => "application/json")
+  end
+
   it 'posts the message to the slack webhook' do
     expect(response.status).to eq('200')
     expect(response.body).to eq('OK')
