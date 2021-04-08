@@ -3,10 +3,14 @@
 require 'net/http'
 require 'json'
 
+require_relative 'validation'
+
 module NotifySlack
   Response = Struct.new(:status, :body, keyword_init: true)
 
   class Notify
+    include NotifySlack::Validation
+
     def self.call(...)
       new(...).call
     end
@@ -17,9 +21,13 @@ module NotifySlack
       @message = message
     end
 
+    validates :validate_valid_url
+
     attr_reader :url, :message
 
     def call
+      validate!
+
       Response.new(
         status: response.code,
         body: response.body,
@@ -44,6 +52,12 @@ module NotifySlack
 
     def uri
       @uri ||= URI.parse(url)
+    end
+
+    def validate_valid_url
+      return if url.match?(%r{^https://hooks.slack.com/services/.+})
+
+      errors.add(:url, "must be a valid Slack incoming webhook")
     end
   end
 end

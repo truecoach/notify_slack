@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
 require 'notify_slack'
 require 'webmock/rspec'
-require 'pry-byebug'
+require 'json'
 
 require_relative 'support/slack_mock'
 
